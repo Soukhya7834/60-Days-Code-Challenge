@@ -1,25 +1,18 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    void nextPermutation(vector<int>& nums) {
-        int k, l;
-        int n = nums.size();
-        for(k=n-2; k>=0; k--){
-             if(nums[k+1] > nums[k])
-                 break;
-        }
-        if(k<0)
-            reverse(nums.begin(), nums.end());
-        
-        else{
-            
-        for(l =n-1; l>=0 ; l--){
-            if(nums[l] > nums[k])
-                break;
-        
-            
-        }
-        swap(nums[k], nums[l]);
-        reverse(nums.begin() + k+1, nums.end());
-        }
+    ListNode* mergeTwoLists(ListNode* a, ListNode* b) {
+        if (!a || b && a->val > b->val) swap(a, b);
+        if (a) a->next = mergeTwoLists(a->next, b);
+        return a;
     }
-}; 
+};
